@@ -1,5 +1,6 @@
 from hanoi import *
 from collections import deque
+from decorateur import *
 
 def bfsTrans_up_2(graph, pred, opaque):
     I = True
@@ -27,8 +28,8 @@ def predicate_finder(graph, predicate):
         return a[0]
     return bfsTrans_up_2(graph, check_pred, [False, 0, None])
 
-def predicate(node, opaque):
-    state_disks = node[0]
+def predicate(node):
+    state_disks = node.state_disks
     for disk in state_disks:
         if disk != 2:
             return False
@@ -40,6 +41,8 @@ if __name__ == '__main__':
 
     roots = {1, 3, 1}
 
-    graph = Hanoi(3)
+    operand = Hanoi(3)
+    graph = ParentTracer(operand)
 
-    print(predicate_finder(graph, lambda n: n == 4 ))
+    print(predicate_finder(graph, predicate))
+    print(graph.parents)
