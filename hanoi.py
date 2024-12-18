@@ -92,3 +92,5 @@ class Hanoi(RootedGraph):
                     if self.check_move(node, p, disque):
                         possible_states.append(self.move(node, p, disque))
         return possible_states
+
+        return possible_states
