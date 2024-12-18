@@ -1,31 +1,41 @@
 from parcours_graphe import RootedGraph
 
 class HanoiNode:
-    def __init__(self, state_disks, state_piliers):
+    def __init__(self, state_disks: list, state_piliers: dict):
         self.state_disks = state_disks
         self.state_piliers = state_piliers
         return
 
     def __eq__(self, other):
-        return
+        for i in range(len(self.state_disks)):
+            if self.state_disks[i] != other.state_disks[i]:
+                return False
+        for el in self.state_piliers:
+            try:
+                if self.state_piliers[el] != other.state_piliers[el]:
+                    return False
+            except KeyError:
+                return False
+        return True
+
 
     def __hash__(self):
-        return 1
+        return hash(tuple(self.state_disks))
 
 
 
 
 class Hanoi(RootedGraph):
 
-    def __init__(self, nb_disk):
+    def __init__(self, nb_disk: int):
         super().__init__()
         self.nb_disk = nb_disk
         self.nb_pilier = 3
         return
 
-    def check_move(self, node, pilier_cible, disk):
+    def check_move(self, node: HanoiNode, pilier_cible: int, disk: int):
 
-        state_disks, state_piliers = node  # node = ([list_state_disks], {dict_state_pilier})
+        state_disks = node.state_disks # node = ([list_state_disks], {dict_state_pilier})
 
         if disk >= self.nb_disk or pilier_cible >= self.nb_pilier:
             return False  # Cas qui ne doivent pas se produire
@@ -36,9 +46,9 @@ class Hanoi(RootedGraph):
 
         return True
 
-    def move(self, node, pilier, disk):
-        state_disks = node[0].copy()
-        state_piliers = node[1].copy()
+    def move(self, node: HanoiNode, pilier: int, disk: int):
+        state_disks = node.state_disks.copy()
+        state_piliers = node.state_piliers.copy()
 
         prev_pilier = state_disks[disk]
 
@@ -50,21 +60,24 @@ class Hanoi(RootedGraph):
                 state_piliers[prev_pilier] = d
                 break
 
+        if state_piliers[prev_pilier] == disk:
+            del state_piliers[prev_pilier]
+
         return HanoiNode(state_disks, state_piliers)
 
 
-    def neighbours(self, node):
+    def neighbours(self, node: HanoiNode):
         """
         Cette fonction créé tous les mouvement possibles à partir d'un état
         Elle utilise la fonction check_move pour verifier si un deplacement est possible
         ou non
         Renvoie une liste de tous les états voisins de node
         """
-        state_disque, state_pilier = node
+        state_piliers = node.state_piliers
         possible_states = []
 
-        for pilier in state_pilier:
-            disque = state_pilier[pilier]
+        for pilier in state_piliers:
+            disque = state_piliers[pilier]
             for p in range(self.nb_pilier):
                 if p != pilier:
                     if self.check_move(node, p, disque):
