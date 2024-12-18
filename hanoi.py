@@ -3,6 +3,7 @@ from parcours_graphe import RootedGraph
 class Hanoi(RootedGraph):
 
     def __init__(self, nb_disk):
+        super().__init__()
         self.nb_disk = nb_disk
         self.nb_pilier = 3
         return
