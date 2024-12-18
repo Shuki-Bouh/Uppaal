@@ -91,3 +91,4 @@ class Hanoi(RootedGraph):
                 if p != pilier:
                     if self.check_move(node, p, disque):
                         possible_states.append(self.move(node, p, disque))
+        return possible_states
