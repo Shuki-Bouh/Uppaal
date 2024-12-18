@@ -31,7 +31,16 @@ class Hanoi(RootedGraph):
         super().__init__()
         self.nb_disk = nb_disk
         self.nb_pilier = 3
+        self.__root = [0 for _ in range(nb_disk)]
         return
+
+    @property
+    def root(self):
+        return self.__root
+
+    @root.setter
+    def root(self, value):
+        self.__root = value
 
     def check_move(self, node: HanoiNode, pilier_cible: int, disk: int):
 
