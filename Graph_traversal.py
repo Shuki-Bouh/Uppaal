@@ -34,3 +34,12 @@ def predicate(node, opaque):
             return False
         
     return True
+
+
+if __name__ == '__main__':
+
+    roots = {1, 3, 1}
+
+    graph = Hanoi(3)
+
+    print(predicate_finder(graph, lambda n: n == 4 ))
