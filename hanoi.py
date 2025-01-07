@@ -22,6 +22,9 @@ class HanoiNode:
     def __hash__(self):
         return hash(tuple(self.state_disks))
 
+    def __repr__(self):
+        return str(self.state_disks)
+
 
 
 
@@ -31,15 +34,17 @@ class Hanoi(RootedGraph):
         super().__init__()
         self.nb_disk = nb_disk
         self.nb_pilier = 3
-        self.__root = [0 for _ in range(nb_disk)]
+        state_disks = [0 for _ in range(nb_disk)]
+        state_piliers = {0:0}
+        self.__root = [HanoiNode(state_disks, state_piliers)]
         return
 
     @property
-    def root(self):
+    def roots(self):
         return self.__root
 
-    @root.setter
-    def root(self, value):
+    @roots.setter
+    def roots(self, value):
         self.__root = value
 
     def check_move(self, node: HanoiNode, pilier_cible: int, disk: int):
@@ -49,7 +54,7 @@ class Hanoi(RootedGraph):
         if disk >= self.nb_disk or pilier_cible >= self.nb_pilier:
             return False  # Cas qui ne doivent pas se produire
 
-        for d in state_disks[:disk]:
+        for d in range(disk):
             if state_disks[d] == pilier_cible or state_disks[d] == state_disks[disk]:  # On regarde si un disque est au dessus ou si un disque plus petit est déjà là-bas
                 return False
 
@@ -64,7 +69,7 @@ class Hanoi(RootedGraph):
         state_disks[disk] = pilier
         state_piliers[pilier] = disk
 
-        for d in state_disks[disk:]:
+        for d in range(disk+1, self.nb_disk):
             if state_disks[d] == prev_pilier:
                 state_piliers[prev_pilier] = d
                 break
@@ -91,6 +96,4 @@ class Hanoi(RootedGraph):
                 if p != pilier:
                     if self.check_move(node, p, disque):
                         possible_states.append(self.move(node, p, disque))
-        return possible_states
-
         return possible_states
