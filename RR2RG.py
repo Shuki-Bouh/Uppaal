@@ -6,7 +6,7 @@ class RR2RG(RootedGraph):
         super().__init__()
         self.op = rootedRelation
 
-    def roots(self, roots):
+    def roots(self):
         return self.op.initial()
 
     def neighbours(self, node):

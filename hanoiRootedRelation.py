@@ -34,11 +34,9 @@ class Hanoi(RootedRelation):
         state_disks = [0 for _ in range(nb_disk)]
         state_piliers = {0:0}
         self.__root = [HanoiNode(state_disks, state_piliers)]
-        self.liste_actions = [(i, j) for i,j in (0, self.nb_pilier) if i !=j ]
 
     
     def initial(self):
-        
         return self.__root
 
     def actions(self, node: HanoiNode):

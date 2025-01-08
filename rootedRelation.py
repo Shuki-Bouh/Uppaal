@@ -1,15 +1,13 @@
 from abc import abstractmethod, ABC
 
 class RootedRelation(ABC):
-    def __init__(self, root):
-        self.__root = root
 
     @abstractmethod
     def initial(self):
-        return self.__roots
+        pass
 
     @abstractmethod
-    def actions(self, c):
+    def actions(self):
         pass
 
     @abstractmethod
