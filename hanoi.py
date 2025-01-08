@@ -18,14 +18,11 @@ class HanoiNode:
                 return False
         return True
 
-
     def __hash__(self):
         return hash(tuple(self.state_disks))
 
     def __repr__(self):
         return str(self.state_disks)
-
-
 
 
 class Hanoi(RootedGraph):
