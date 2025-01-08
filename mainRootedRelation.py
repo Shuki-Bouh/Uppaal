@@ -5,8 +5,6 @@ from hanoiRootedRelation import Hanoi
 
 if __name__ == '__main__':
 
-    roots = {1, 3, 1}
-
     operand = RR2RG(Hanoi(3))
     graph = ParentTracer(operand)
 

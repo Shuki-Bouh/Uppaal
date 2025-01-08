@@ -9,7 +9,7 @@ class ParentTracer(RootedGraph):
 
     @property
     def roots(self):
-        rs = self.operand.roots
+        rs = self.operand.roots  # Hanoi node 
         for r in rs:
             self.parents[r] = []
         return rs
