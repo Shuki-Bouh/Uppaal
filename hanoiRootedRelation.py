@@ -1,31 +1,8 @@
 from rootedRelation import RootedRelation
-
-class HanoiNode:
-    def __init__(self, state_disks: list, state_piliers: dict):
-        self.state_disks = state_disks
-        self.state_piliers = state_piliers
-        return
-
-    def __eq__(self, other):
-        for i in range(len(self.state_disks)):
-            if self.state_disks[i] != other.state_disks[i]:
-                return False
-        for el in self.state_piliers:
-            try:
-                if self.state_piliers[el] != other.state_piliers[el]:
-                    return False
-            except KeyError:
-                return False
-        return True
-
-    def __hash__(self):
-        return hash(tuple(self.state_disks))
-
-    def __repr__(self):
-        return str(self.state_disks)
+from hanoi import Hanoi, HanoiNode
 
 
-class Hanoi(RootedRelation):
+class HanoiRootedRelation(RootedRelation):
 
     def __init__(self, nb_disk: int):
         super().__init__()
@@ -39,7 +16,7 @@ class Hanoi(RootedRelation):
     def initial(self):
         return self.__root
 
-    def actions(self, node: HanoiNode):
+    def actions(self, node: HanoiNode) -> list:
         liste_config = []
         for i in range(self.nb_pilier):
             for j in range(self.nb_pilier):
@@ -52,21 +29,10 @@ class Hanoi(RootedRelation):
         return liste_config
 
 
-    def execute(self, actions, node):
+    def execute(self, actions: list, node: HanoiNode) -> HanoiNode:
+        hanoi = Hanoi(3)
         for action in actions:
-            i, j = action
-            state_disks = node.state_disks.copy()
-            state_piliers = node.state_piliers.copy()
-            disk = state_piliers[i]
-            pilier = j
-            prev_pilier = state_disks[disk]
-            state_disks[disk] = pilier
-            state_piliers[pilier] = disk
-            for d in range(disk+1, self.nb_disk):
-                if state_disks[d] == prev_pilier:
-                    state_piliers[prev_pilier] = d
-                    break
-            if state_piliers[prev_pilier] == disk:
-                del state_piliers[prev_pilier]
+            disk, pilier = action
+            new_node = hanoi.move(node, pilier, disk)
 
-            return HanoiNode(state_disks, state_piliers)
+            return new_node

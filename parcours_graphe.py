@@ -6,10 +6,12 @@ class RootedGraph(ABC):
         return
 
     @abstractmethod
+    @property
     def roots(self):
         return
 
     @abstractmethod
+    @roots.setter
     def roots(self, roots):
         return
 
@@ -22,6 +24,7 @@ class RootedGraph(ABC):
 
     def __hash__(self):
         return 1
+
 
 class DictRootedGraph(RootedGraph):
     def __init__(self, data, roots):
@@ -41,37 +44,14 @@ class DictRootedGraph(RootedGraph):
         return self.__data[node] if node in self.__data else None
 
 
-class HanoiRootedGraph(RootedGraph):
-    def __init__(self, data, roots):
-        super().__init__()
-        self.__roots = roots
-        self.__data = data
-
-    @property
-    def roots(self):
-        return self.__roots
-
-    @roots.setter
-    def roots(self, r):
-        self.__roots = r
-
-    def neighbours(self, node):
-        return self.__data[node] if node in self.__data else None
-
-    def __eq__(self, other):
-        return
-
-    def __hash__(self):
-        return 1
-
-
 def pred(n, opaque):
     if n == 4:
         opaque[0] = True
         return True
     return False
 
-def bfsTrans(graph, roots):
+
+def bfsTrans_v1(graph, roots):
     I = True
     k = set()
     F = deque()
@@ -85,7 +65,8 @@ def bfsTrans(graph, roots):
                 F.append(n)
     return k
 
-def bfsTrans_up(graph):
+
+def bfsTrans_v2(graph):
     I = True
     k = set()
     F = deque()
@@ -99,7 +80,8 @@ def bfsTrans_up(graph):
                 F.append(n)
     return k
 
-def bfsTrans_up_2(graph, pred, opaque):
+
+def bfsTrans_noble(graph, pred, opaque):
     I = True
     k = set()
     F = deque()
@@ -116,6 +98,7 @@ def bfsTrans_up_2(graph, pred, opaque):
                     return opaque, k
     return k
 
+
 def predicate_finder(graph, predicate):
     def check_pred(n, a):
         a[1] += 1
@@ -123,7 +106,7 @@ def predicate_finder(graph, predicate):
         if a[0]:
             a[2] = n
         return a[0]
-    return bfsTrans_up_2(graph, check_pred, [False, 0, None])
+    return bfsTrans_noble(graph, check_pred, [False, 0, None])
 
 
 def breadth_first_search(graph, source):
@@ -154,6 +137,7 @@ def breadth_first_search(graph, source):
 
         visited.add(u)
     return visited
+
 
 def depth_first_search(graph, source):
     """

@@ -7,10 +7,10 @@ class RootedRelation(ABC):
         pass
 
     @abstractmethod
-    def actions(self):
+    def actions(self, node):
         pass
 
     @abstractmethod
-    def execute(self):
+    def execute(self, actions, node):
         pass
 
