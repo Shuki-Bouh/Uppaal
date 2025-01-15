@@ -77,6 +77,9 @@ class Hanoi(RootedGraph):
                                                # d'une façon ou d'une autre (problème des valeurs mutables)
         state_piliers = node.state_piliers.copy()
 
+        if pilier == state_disks[disk]:
+            return HanoiNode(state_disks, state_piliers)
+
         prev_pilier = state_disks[disk]
 
         state_disks[disk] = pilier

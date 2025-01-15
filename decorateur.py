@@ -1,4 +1,3 @@
-from hanoi import *
 from parcours_graphe import RootedGraph
 
 
@@ -9,7 +8,7 @@ class ParentTracer(RootedGraph):
 
     @property
     def roots(self):
-        rs = self.operand.roots  # Hanoi node 
+        rs = self.operand.roots  # Hanoi node
         for r in rs:
             self.parents[r] = []
         return rs
