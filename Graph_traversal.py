@@ -36,6 +36,16 @@ def predicate(node):
         
     return True
 
+def has_deadlock(sem):
+    def pred(c):
+        actions = sem.actions(c)
+        if len(actions) == 0:
+            return True
+        for a in actions:
+            if len(sem.execute(a,c)) == 0:
+                return False
+        return True
+    return pred
 
 if __name__ == '__main__':
 
