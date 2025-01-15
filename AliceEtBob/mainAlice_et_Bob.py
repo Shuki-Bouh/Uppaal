@@ -1,6 +1,6 @@
-from decorateur import ParentTracer
-from RR2RG import RR2RG
-from Graph_traversal import predicate_finder, predicate
+from Uppaal.decorateur import ParentTracer
+from Uppaal.RR2RG import RR2RG
+from Uppaal.Graph_traversal import predicate_finder, predicate
 from alice_et_bob import AliceBob1
 
 if __name__ == '__main__':

@@ -1,4 +1,4 @@
-from rootedRelation import RootedRelation
+from Uppaal.rootedRelation import RootedRelation
 
 
 class AliceBobNode:
