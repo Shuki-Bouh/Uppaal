@@ -28,7 +28,7 @@ def predicate_finder(graph, predicate):
         return a[0]
     return bfsTrans_up_2(graph, check_pred, [False, 0, None])
 
-def predicate(node):
+def predicate_hanoi(node):
     state_disks = node.state_disks
     for disk in state_disks:
         if disk != 2:
@@ -54,5 +54,5 @@ if __name__ == '__main__':
     operand = Hanoi(3)
     graph = ParentTracer(operand)
 
-    print(predicate_finder(graph, predicate))
+    print(predicate_finder(graph, predicate_hanoi))
     print(graph.parents)
