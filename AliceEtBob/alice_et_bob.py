@@ -127,5 +127,5 @@ if __name__ == "__main__":
             print("Aucune action possible, arrêt.")
             break
 
-    if alice_bob.is_deadlock(current_state):
+    if alice_bob.is_deadlock(current_state): ## DeadLock detecté pour (a=c et b=w)
         print("Deadlock détecté!", current_state)

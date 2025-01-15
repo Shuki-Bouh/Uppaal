@@ -113,7 +113,8 @@ if __name__ == "__main__":
     print("État initial:", root)
 
     current_state = root
-    while not alice_bob.is_deadlock(current_state):
+    possible_actions = alice_bob.actions(current_state)
+    while possible_actions != []:
         possible_actions = alice_bob.actions(current_state)
         print("Actions possibles:", possible_actions)
 
@@ -127,5 +128,4 @@ if __name__ == "__main__":
             print("Aucune action possible, arrêt.")
             break
 
-    if alice_bob.is_deadlock(current_state):
-        print("Deadlock détecté!", current_state)
+    print("Deadlock détecté!", current_state)

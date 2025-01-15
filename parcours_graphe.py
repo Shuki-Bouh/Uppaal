@@ -6,18 +6,16 @@ class RootedGraph(ABC):
         return
 
     @abstractmethod
-    @property
     def roots(self):
-        return
+        pass
 
     @abstractmethod
-    @roots.setter
     def roots(self, roots):
-        return
+        pass
 
     @abstractmethod
     def neighbours(self, node):
-        return
+        pass
 
     def __eq__(self, other):
         return
