@@ -1,4 +1,4 @@
-from Trash.parcours_graphe import RootedGraph
+from Graph_traversal import RootedGraph
 
 class RR2RG(RootedGraph):
 
