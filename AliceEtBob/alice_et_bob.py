@@ -40,9 +40,9 @@ class MereAliceBob(RootedRelation):
         """
         actor, new_state = action
         if actor == "alice":
-            return AliceBobNode(a=new_state, b=node.b)
+            return [AliceBobNode(a=new_state, b=node.b)]
         elif actor == "bob":
-            return AliceBobNode(a=node.a, b=new_state)
+            return [AliceBobNode(a=node.a, b=new_state)]
 
     def is_deadlock(self, node: AliceBobNode):
         """

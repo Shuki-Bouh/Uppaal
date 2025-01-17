@@ -1,4 +1,4 @@
-from parcours_graphe import RootedGraph
+from Graph_traversal import RootedGraph
 from collections import deque
 import numpy as np
 

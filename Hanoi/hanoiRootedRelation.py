@@ -37,4 +37,4 @@ class HanoiRootedRelation(RootedRelation, Hanoi):
 
         disk, pilier = action
         new_node = hanoi.move(node, pilier, disk)
-        return new_node
+        return [new_node]

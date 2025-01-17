@@ -1,4 +1,4 @@
-from parcours_graphe import RootedGraph
+from Trash.parcours_graphe import RootedGraph
 
 
 class ParentTracer(RootedGraph):

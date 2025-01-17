@@ -1,4 +1,4 @@
-from parcours_graphe import RootedGraph
+from Graph_traversal import RootedGraph
 
 class HanoiNode:
     """Cette classe représente un noeud du graphe de Hanoi.

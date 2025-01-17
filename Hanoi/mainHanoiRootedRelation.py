@@ -1,6 +1,7 @@
 from decorateur import ParentTracer
 from RR2RG import RR2RG
-from Graph_traversal import predicate_finder, predicate_hanoi
+from Graph_traversal import predicate_finder
+from predicate_hanoi import predicate_hanoi
 from hanoiRootedRelation import HanoiRootedRelation
 
 if __name__ == '__main__':
@@ -8,4 +9,3 @@ if __name__ == '__main__':
     graph = ParentTracer(operand)
 
     print(predicate_finder(graph, predicate_hanoi))
-    print(graph.parents)

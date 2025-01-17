@@ -9,4 +9,3 @@ if __name__ == '__main__':
     graph = ParentTracer(operand)
 
     print(predicate_finder(graph, has_deadlock(AliceBob1())))
-    print(graph.parents)

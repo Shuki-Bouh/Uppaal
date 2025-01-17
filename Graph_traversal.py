@@ -1,8 +1,31 @@
-from hanoi import *
+from abc import abstractmethod, ABC
 from collections import deque
-from decorateur import *
 
-def bfsTrans_up_2(graph, pred, opaque):
+class RootedGraph(ABC):
+    def __init__(self):
+        return
+
+    @abstractmethod
+    def roots(self):
+        pass
+
+    @abstractmethod
+    def roots(self, roots):
+        pass
+
+    @abstractmethod
+    def neighbours(self, node):
+        pass
+
+    def __eq__(self, other):
+        return
+
+    def __hash__(self):
+        return 1
+
+
+
+def bfsTrans(graph, pred, opaque):
     I = True
     k = set()
     F = deque()
@@ -26,15 +49,8 @@ def predicate_finder(graph, predicate):
         if a[0]:
             a[2] = n
         return a[0]
-    return bfsTrans_up_2(graph, check_pred, [False, 0, None])
+    return bfsTrans(graph, check_pred, [False, 0, None])
 
-def predicate_hanoi(node):
-    state_disks = node.state_disks
-    for disk in state_disks:
-        if disk != 2:
-            return False
-        
-    return True
 
 def has_deadlock(sem):
     def pred(c):
@@ -42,17 +58,8 @@ def has_deadlock(sem):
         if len(actions) == 0:
             return True
         for a in actions:
-            if len(sem.execute(a,c)) == 0:
+            if len(sem.execute(a, c)) > 0:
                 return False
         return True
     return pred
 
-if __name__ == '__main__':
-
-    roots = {1, 3, 1}
-
-    operand = Hanoi(3)
-    graph = ParentTracer(operand)
-
-    print(predicate_finder(graph, predicate_hanoi))
-    print(graph.parents)
