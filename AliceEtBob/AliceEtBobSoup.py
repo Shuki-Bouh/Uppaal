@@ -76,7 +76,7 @@ class SoupSemantics:
         piece.behavior(target)  # Modifie target
         return [target]
 
-# Exemple d'utilisation
+
 if __name__ == "__main__":
     semantics = SoupSemantics(soup)
     current_states = semantics.initial()
@@ -85,11 +85,20 @@ if __name__ == "__main__":
 
     while current_states:
         next_states = []
+        deadlock_detected = True  # Assume deadlock until proven otherwise
+        
         for state in current_states:
             actions = semantics.actions(state)
             print(f"Actions possibles pour {state.__dict__}: {[a.nom for a in actions]}")
-            for action in actions:
-                next_states.extend(semantics.execute(action, state))
+            
+            if actions:  # If any action is possible, no deadlock in this state
+                deadlock_detected = False
+                for action in actions:
+                    next_states.extend(semantics.execute(action, state))
+
+        if deadlock_detected:
+            print("Deadlock détecté. Aucun état suivant possible.")
+            break
 
         current_states = next_states
 
