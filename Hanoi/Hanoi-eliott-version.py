@@ -1,4 +1,4 @@
-from Graph_traversal import RootedGraph
+from Graph.Graph_traversal import RootedGraph
 from collections import deque
 import numpy as np
 
@@ -107,8 +107,3 @@ def predicate_finder(graph: Hanoi, predicate):
 def predicate(node: HanoiNode) -> bool:
     # Condition: Tous les disques sont sur le dernier pilier
     return np.all(node.system_state[-1] == 1)
-
-
-if __name__ == '__main__':
-    graph = Hanoi(3)
-    print(predicate_finder(graph, predicate))

@@ -1,5 +1,5 @@
-from rootedRelation import RootedRelation
-from hanoi import Hanoi, HanoiNode
+from Graph.rootedRelation import RootedRelation
+from Hanoi.hanoi import Hanoi, HanoiNode
 
 
 class HanoiRootedRelation(RootedRelation, Hanoi):

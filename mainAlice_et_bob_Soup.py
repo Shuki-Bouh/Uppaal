@@ -1,6 +1,6 @@
-from decorateur import ParentTracer
-from RR2RG import RR2RG
-from Graph_traversal import predicate_finder, has_deadlock
+from Graph.decorateur import ParentTracer
+from Graph.RR2RG import RR2RG
+from Graph.Graph_traversal import predicate_finder, has_deadlock
 from AliceEtBob.AliceEtBobSoup import *
 
 if __name__ == '__main__':

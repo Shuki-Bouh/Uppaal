@@ -1,4 +1,4 @@
-from rootedRelation import RootedRelation
+from Graph.rootedRelation import RootedRelation
 
 
 class AliceBobNode:

@@ -1,6 +1,6 @@
 from Hanoi.hanoi import Hanoi
-from decorateur import ParentTracer
-from Graph_traversal import predicate_finder
+from Graph.decorateur import ParentTracer
+from Graph.Graph_traversal import predicate_finder
 from Hanoi.predicate_hanoi import predicate_hanoi
 
 if __name__ == '__main__':
