@@ -32,7 +32,7 @@ class HanoiRootedRelation(RootedRelation, Hanoi):
         return liste_config
 
 
-    def execute(self, action: tuple, node: HanoiNode) -> HanoiNode:
+    def execute(self, action: tuple, node: HanoiNode) -> list:
         hanoi = Hanoi(3)
 
         disk, pilier = action

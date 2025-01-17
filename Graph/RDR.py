@@ -8,8 +8,10 @@ class RootedDependentRelation(ABC):
 
     @abstractmethod
     def actions(self, i, c):
-        pass
+        return list(filter(lambda p: p.guard(i, c), self.program.pieces))
 
     @abstractmethod
     def execute(self, a, i, c):
-        pass
+        target = c.copy()
+        a.behavior(i, target)
+        return [target]
