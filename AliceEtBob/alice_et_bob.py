@@ -68,12 +68,16 @@ class AliceBob1(MereAliceBob):
             possible_actions.append(("alice", "w"))
         elif node.a == "w" and node.b != "c":
             possible_actions.append(("alice", "c"))
+        elif node.a == "c":
+            possible_actions.append(("alice", "i"))
 
         # Changement d'état pour Bob
         if node.b == "i":
             possible_actions.append(("bob", "w"))
         elif node.b == "w" and node.a != "c":
             possible_actions.append(("bob", "c"))
+        elif node.b == "c":
+            possible_actions.append(("bob", "i"))
 
         return possible_actions
 
