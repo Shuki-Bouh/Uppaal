@@ -1,6 +1,8 @@
 from Graph.RR2RG import RR2RG
 from Graph.Soupe import SoupSemantics
 from Graph.decorateur import ParentTracer
+from Graph.Soupe import Piece
+from RDR import SoupDependantSemantics
 
 
 class Stutter:
@@ -13,11 +15,11 @@ class StepSemanticsIntersection:
         self.rhs = rhs
 
     def initial(self):
-        cs = []
+        configs = []
         for lc in self.lhs.initial():
             for rc in self.rhs.initial():
-                cs.append((lc, rc))
-        return cs
+                configs.append((lc, rc))
+        return configs
 
     def actions(self, config):
         sync_actions = []
@@ -44,9 +46,9 @@ class StepSemanticsIntersection:
 
         return sync_actions
 
-    def execute(self, a, c):
-        left_step, right_action = a
-        left_configuration, right_configuration = c
+    def execute(self, action, config):
+        left_step, right_action = action
+        left_configuration, right_configuration = config
         right_targets = self.rhs.execute(right_action, left_step, right_configuration)
         l_cx, l_a, left_target = left_step
 
@@ -72,4 +74,4 @@ if __name__ == '__main__':
 
     s, n, c, k = prod_finder(pt, lambda c: accept(r_c))
 
-    pt.get_trace(n)
+    pt.trace(n)

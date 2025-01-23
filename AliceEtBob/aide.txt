@@ -1,9 +1,0 @@
-######## Etape 1 ########
-
-On met l'automate sous forme d'une rooted relation 
-
-Rappels : RootedRelation :
-            - initial
-            - actions 
-            - execute
-
