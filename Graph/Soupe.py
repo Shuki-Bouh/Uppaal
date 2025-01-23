@@ -22,6 +22,10 @@ class Soup:
     def add(self, piece):
         self.pieces.append(piece)
 
+    @property
+    def roots(self):
+        return self.start
+
 
 class SoupSemantics:
     def __init__(self, program: Soup):
