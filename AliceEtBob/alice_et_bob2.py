@@ -9,7 +9,7 @@ class AliceBobNode2:
         self.flag_bob = flag_bob
 
     def __eq__(self, other) -> bool:
-        return self.alice == other.alice and self.bob == other.bob and self.flag_alice == other.flag_alice and self.flag_bob
+        return self.alice == other.alice and self.bob == other.bob and self.flag_alice == other.flag_alice and self.flag_bob == other.flag_bob
 
     def __hash__(self):
         return hash((self.alice, self.bob, self.flag_alice, self.flag_bob))

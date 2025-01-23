@@ -10,6 +10,12 @@ class programConfigAB2(programConfigAB1):
     def copy(self):
         return programConfigAB2(self.alice, self.bob, self.flag_alice, self.flag_bob)
 
+    def __hash__(self):
+        return hash((self.alice, self.bob, self.flag_alice, self.flag_bob))
+
+    def __eq__(self, other):
+        return (self.alice, self.bob) == (other.alice, other.bob)
+
 
 class SoupAB2(Soup):
     def __init__(self):

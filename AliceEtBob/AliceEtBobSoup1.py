@@ -14,6 +14,12 @@ class programConfigAB1(programConfig):
     def __repr__(self):
         return f"AliceBobConfig(a={self.alice}, b={self.bob})"
 
+    def __hash__(self):
+        return hash((self.alice, self.bob))
+
+    def __eq__(self, other):
+        return (self.alice, self.bob) == (other.alice, other.bob)
+
 
 class Behaviours:
     """Cette classe regroupe les différents behaviours existants pour Alice et Bob (regroupe la v1 et la v2)"""

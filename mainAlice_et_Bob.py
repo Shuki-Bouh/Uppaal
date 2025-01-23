@@ -27,16 +27,17 @@ if __name__ == '__main__':
         msg = config[1]
 
         graph = ParentTracer(operand)
-        final_node = predicate_finder(graph, predicate_alicebob)[0]
+        final_node = predicate_finder(graph, predicate_alicebob)
         print("___________________________________________________________")
         print(msg)
         print("Tentative de trouver la configuration Alice = C et Bob = C en cours ....")
-        if final_node[0]:
-            print("Alice et Bob se retrouvent dans la section critique en même temps :")
-            print(graph.trace(final_node[2]))
-            print("")
-        else:
+        if final_node[0] is None:
             print("Alice et Bob ne se retrouvent jamais en section critique en même temps\n")
+        else:
+            print("Alice et Bob se retrouvent dans la section critique en même temps :")
+            print(graph.trace(final_node[0][2]))
+            print("")
+
 
         print("Tentative de trouver un dead lock en cours ....")
 
