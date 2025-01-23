@@ -8,4 +8,5 @@ if __name__ == '__main__':
     operand = RR2RG(HanoiRootedRelation(3))
     graph = ParentTracer(operand)
 
-    print(predicate_finder(graph, predicate_hanoi))
+    final_node = predicate_finder(graph, predicate_hanoi)[0][2]
+    print(graph.trace(final_node))

@@ -26,36 +26,36 @@ class programConfig():
         return programConfig(self.a, self.b)
 
 def alice_action_write(c):
-    c.a = "w"
+    c.alice = "w"
     c.PC += 1
 
 def alice_action_commit(c):
-    c.a = "c"
+    c.alice = "c"
     c.PC += 1
 
 def alice_action_idle(c):
-    c.a = "i"
+    c.alice = "i"
     c.PC += 1
 
 def bob_action_write(c):
-    c.b = "w"
+    c.bob = "w"
     c.PC += 1
 
 def bob_action_commit(c):
-    c.b = "c"
+    c.bob = "c"
     c.PC += 1
 
 def bob_action_idle(c):
-    c.b = "i"
+    c.bob = "i"
     c.PC += 1
 
-alice_write = Piece("alice_write", lambda c: c.a == "i", alice_action_write)
-alice_commit = Piece("alice_commit", lambda c: c.a == "w", alice_action_commit)
-alice_idle = Piece("alice_idle", lambda c: c.a == "c", alice_action_idle)
+alice_write = Piece("alice_write", lambda c: c.alice == "i", alice_action_write)
+alice_commit = Piece("alice_commit", lambda c: c.alice == "w", alice_action_commit)
+alice_idle = Piece("alice_idle", lambda c: c.alice == "c", alice_action_idle)
 
-bob_write = Piece("bob_write", lambda c: c.b == "i", bob_action_write)
-bob_commit = Piece("bob_commit", lambda c: c.b == "w", bob_action_commit)
-bob_idle = Piece("bob_idle", lambda c: c.b == "c", bob_action_idle)
+bob_write = Piece("bob_write", lambda c: c.bob == "i", bob_action_write)
+bob_commit = Piece("bob_commit", lambda c: c.bob == "w", bob_action_commit)
+bob_idle = Piece("bob_idle", lambda c: c.bob == "c", bob_action_idle)
 
 initial_config = programConfig()
 soup = Soup(initial_config, [alice_write, alice_commit, alice_idle, bob_write, bob_commit, bob_idle])

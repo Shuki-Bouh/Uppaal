@@ -10,5 +10,5 @@ if __name__ == '__main__':
     operand = Hanoi(3)
     graph = ParentTracer(operand)
 
-    print(predicate_finder(graph, predicate_hanoi))
-    print(graph.parents)
+    finale_node = predicate_finder(graph, predicate_hanoi)[0][2]
+    print(graph.trace(finale_node))
