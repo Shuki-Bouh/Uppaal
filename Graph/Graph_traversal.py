@@ -1,6 +1,7 @@
 from abc import abstractmethod, ABC
 from collections import deque
 
+
 class RootedGraph(ABC):
     def __init__(self):
         return
@@ -24,8 +25,7 @@ class RootedGraph(ABC):
         return 1
 
 
-
-def bfsTrans(graph, pred, opaque):
+def bfs_trans(graph, pred, opaque):
     I = True
     k = set()
     F = deque()
@@ -40,7 +40,8 @@ def bfsTrans(graph, pred, opaque):
                 F.append(n)
                 if terminates:
                     return opaque, k
-    return k
+    return None, k
+
 
 def predicate_finder(graph, predicate):
     def check_pred(n, a):
@@ -49,7 +50,7 @@ def predicate_finder(graph, predicate):
         if a[0]:
             a[2] = n
         return a[0]
-    return bfsTrans(graph, check_pred, [False, 0, None])
+    return bfs_trans(graph, check_pred, [False, 0, None])
 
 
 def has_deadlock(sem):
