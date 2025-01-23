@@ -19,7 +19,7 @@ if __name__ == '__main__':
         AliceBob = AliceBob2
         Soup = SoupAB2
 
-    configs = [[RR2RG(AliceBob()), "\tFonctionnement en Rootedgraph\n"],
+    configs = [[RR2RG(AliceBob()), "\tFonctionnement en Rootedrelation\n"],
                [RR2RG(SoupSemantics(Soup())), "\tFonctionnement en Soupsemantics\n"]] # Cela permet de tester le rootedgraph puis le soupsemantics
 
     for config in configs:
