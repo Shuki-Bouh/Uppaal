@@ -1,3 +1,6 @@
+from abc import ABC, abstractmethod
+
+
 class Piece:
     """ La piece represente une transition dans un graphe, avec une guarde et une action"""
     def __init__(self, nom: str, guard, behavior):  # Guard et action sont des lambdas
@@ -6,10 +9,14 @@ class Piece:
         self.behavior = behavior
 
 
-class programConfig():
+class programConfig(ABC):
     """Nous avons notre registre EIP et x est notre variable d'exemple"""
     def __init__(self):
         self.PC = 1
+
+    @abstractmethod
+    def copy(self):
+        pass
 
 
 class Soup:
@@ -19,7 +26,7 @@ class Soup:
         self.start = start
         self.pieces = pieces
 
-    def add(self, piece):
+    def add(self, piece: Piece):
         self.pieces.append(piece)
 
     @property
@@ -35,11 +42,12 @@ class SoupSemantics:
     def initial(self):
         return [self.program.start]
     
-    def actions(self, c):
-        return list(filter(lambda p:p.guard(c), self.program.pieces))
-    
-    def execute(self, piece, c):
-        target = c.copy()
+    def actions(self, config: programConfig):
+        return list(filter(lambda p:p.guard(config), self.program.pieces))
+
+    @staticmethod
+    def execute(piece, config: programConfig):
+        target = config.copy()
         piece.behavior(target) # Modifie target
         return [target]
 

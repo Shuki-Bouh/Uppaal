@@ -1,4 +1,4 @@
-from Trash.parcours_graphe import RootedGraph
+from Graph.Graph_traversal import RootedGraph
 
 
 class ParentTracer(RootedGraph):
@@ -14,16 +14,18 @@ class ParentTracer(RootedGraph):
             self.parents[r] = []
         return rs
 
-    def neighbours(self, v):
-        rs = self.operand.neighbours(v)
+    def neighbours(self, node):
+        rs = self.operand.neighbours(node)
         for n in rs:
             if n not in self.parents:
-                self.parents[n] = [v]
+                self.parents[n] = [node]
             elif self.parents[n] == []:
-                self.parents[n] = [v]
+                self.parents[n] = [node]
         return rs
 
     def trace(self, final_node):
+        """Cette fonction, une fois tout le graph parcouru, va à partir du nœud final (connaissant la root), réécrir
+        le chemin de la root vers le nœud final."""
         trace_node = []
         current_node = final_node
         while current_node != self.operand.roots[0]:

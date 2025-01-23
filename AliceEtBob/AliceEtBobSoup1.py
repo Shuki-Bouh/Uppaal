@@ -8,7 +8,7 @@ class programConfigAB1(programConfig):
         self.alice = alice
         self.bob = bob
 
-    def copy(self):
+    def copy(self) -> "programConfigAB1":
         return programConfigAB1(self.alice, self.bob)
 
     def __repr__(self):
@@ -25,7 +25,7 @@ class Behaviours:
     """Cette classe regroupe les différents behaviours existants pour Alice et Bob (regroupe la v1 et la v2)"""
 
     @staticmethod
-    def alice_action_initial(config: programConfig):
+    def alice_action_initial(config: programConfig) -> None:
         config.alice = "i"
         config.PC += 1
 
