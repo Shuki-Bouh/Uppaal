@@ -40,7 +40,7 @@ def bfs_trans(graph, pred, opaque):
                 F.append(n)
                 if terminates:
                     return opaque, k
-    return None, k
+    return opaque, k
 
 
 def predicate_finder(graph, predicate):

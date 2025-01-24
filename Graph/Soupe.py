@@ -9,19 +9,27 @@ class Piece:
         self.behavior = behavior
 
 
-class programConfig(ABC):
+class programConfig():
     """Nous avons notre registre EIP et x est notre variable d'exemple"""
-    def __init__(self):
-        self.PC = 1
+    def __init__(self, PC = 0):
+        self.PC = PC
 
-    @abstractmethod
     def copy(self):
-        pass
+        return programConfig(self.PC)
+
+    def __repr__(self):
+        return "ProgramConfig(PC = " + str(self.PC) + ")"
+
+    def __eq__(self, other):
+        return self.PC == other.PC
+
+    def __hash__(self):
+        return hash(self.PC)
 
 
 class Soup:
     """Une soupe represente un programme, une soupe de pieces"""
-    def __init__(self, start: programConfig, pieces: list):
+    def __init__(self, start: programConfig, pieces=[]):
         """start est un program config"""
         self.start = start
         self.pieces = pieces

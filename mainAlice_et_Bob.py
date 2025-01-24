@@ -12,7 +12,7 @@ if __name__ == '__main__':
 
     v = 1  # ou 2 -> Permet de choisir si on veut tester la version 1 de alice et bob (sans flag), ou la version 2
 
-    if v == 1:
+    if v == 2:
         AliceBob = AliceBob1
         Soup = SoupAB1
     else:
@@ -31,7 +31,7 @@ if __name__ == '__main__':
         print("___________________________________________________________")
         print(msg)
         print("Tentative de trouver la configuration Alice = C et Bob = C en cours ....")
-        if final_node[0] is None:
+        if final_node[0][0] == False:
             print("Alice et Bob ne se retrouvent jamais en section critique en même temps\n")
         else:
             print("Alice et Bob se retrouvent dans la section critique en même temps :")

@@ -1,5 +1,6 @@
+from Graph.Graph_traversal import predicate_finder
 from Graph.RR2RG import RR2RG
-from Graph.Soupe import SoupSemantics
+from Graph.Soupe import SoupSemantics, Soup, programConfig
 from Graph.decorateur import ParentTracer
 from Graph.Soupe import Piece
 from RDR import SoupDependantSemantics
@@ -25,7 +26,7 @@ class StepSemanticsIntersection:
         sync_actions = []
         left_config, right_config = config
         left_actions = self.lhs.actions(left_config)
-        right_actions = self.rhs.actions(right_config)
+        #right_actions = self.rhs.actions(right_config)
 
         n_actions = len(left_actions)
 
@@ -35,7 +36,7 @@ class StepSemanticsIntersection:
                 n_actions -= 1
 
             for left_target in left_targets:
-                left_step = (left_config, left_actions, left_target)
+                left_step = (left_config, left_action, left_target)
                 right_actions = self.rhs.actions(left_step, right_config)
                 sync_actions.extend(map(lambda ra: (left_step, ra), right_actions))
 
@@ -52,26 +53,47 @@ class StepSemanticsIntersection:
         right_targets = self.rhs.execute(right_action, left_step, right_configuration)
         l_cx, l_a, left_target = left_step
 
-        targets = map(lambda r_t: (left_target, r_t), right_targets)
+        targets = list(map(lambda r_t: (left_target, r_t), right_targets))
 
-        return [targets]
+        return targets
+
+
+def incr(step, c):
+    c.PC+=1
+
+
+def nbits(nbbits):
+    soup = Soup(programConfig())
+    def flip (i):
+        def occ(c):
+            c.PC = c.PC^(1 << i)
+        return occ
+    for i in range(nbbits):
+        soup.add(Piece(f'{i}', lambda c : True, flip(i)))
+    return soup
 
 
 def nbits_3even():
-    p1 = Piece("ne", lambda step, c: (sta))
+    p1 = Piece("ne", lambda step, c: step[0].PC % 2 == 0, incr)
+    p2 = Piece("even", lambda step, c: step[0].PC % 2 == 1, lambda step, c: None)
+    return Soup(programConfig(), [p1, p2]), lambda c: c[1].PC == 3
 
 
 if __name__ == '__main__':
     S = nbits(5)
-    p, accept = nbits_3even()
-    ss = SoupSemantics(S)
-    sp = SoupDependantSemantics(p)
 
-    sinter = StepSemanticsIntersection(ss, sp)
+    program, accept = nbits_3even()
+    soup_semantics = SoupSemantics(S)
+    soup_dependant_semantics = SoupDependantSemantics(program)
+
+    sinter = StepSemanticsIntersection(soup_semantics, soup_dependant_semantics)
 
     rr2rg = RR2RG(sinter)
-    pt = ParentTracer(rr2rg)
+    graph = ParentTracer(rr2rg)
 
-    s, n, c, k = prod_finder(pt, lambda c: accept(r_c))
-
-    pt.trace(n)
+    final_node = predicate_finder(graph, accept)
+    if final_node[0][0]:
+        print(graph.trace(final_node[0][2]))
+    else:
+        print("Predicate not found")
+        print(final_node[1])

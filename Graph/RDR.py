@@ -1,33 +1,33 @@
 from abc import abstractmethod, ABC
 
-class RootedDependentRelation(ABC):
+class RootedDependentRelation():
+    def __init__(self, program):
+        """program est une soupe"""
+        self.program = program
 
-    @abstractmethod
     def initial(self):
         pass
 
-    @abstractmethod
     def actions(self, i, c):
         return list(filter(lambda p: p.guard(i, c), self.program.pieces))
 
-    @abstractmethod
     def execute(self, a, i, c):
         target = c.copy()
         a.behavior(i, target)
         return [target]
 
 
-class SoupDependantSemantics(ABC):
+class SoupDependantSemantics(RootedDependentRelation):
+    def __init__(self, program):
+        """program est une soupe"""
+        super().__init__(program)
 
-    @abstractmethod
     def initial(self):
-        pass
+        return [self.program.start]
 
-    @abstractmethod
     def actions(self, i, c):
         return list(filter(lambda p: p.guard(i, c), self.program.pieces))
 
-    @abstractmethod
     def execute(self, a, i, c):
         target = c.copy()
         a.behavior(i, target)
