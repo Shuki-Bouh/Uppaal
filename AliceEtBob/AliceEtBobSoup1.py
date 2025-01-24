@@ -62,10 +62,10 @@ class Behaviours:
 class SoupAB1(Soup):
     """Permet de préparer la soup plus rapidement que si c'était fait dans le main"""
     def __init__(self):
-        alice_critical = Piece("alice_critical", lambda c: c.alice == "i", Behaviours.alice_action_critical)
+        alice_critical = Piece("alice_critical", lambda c: c.alice == "i" and c.bob == "i", Behaviours.alice_action_critical)
         alice_initial = Piece("alice_initial", lambda c: c.alice == "c", Behaviours.alice_action_initial)
 
-        bob_critical = Piece("bob_critical", lambda c: c.bob == "i", Behaviours.bob_action_critical)
+        bob_critical = Piece("bob_critical", lambda c: c.bob == "i" and c.alice == "i", Behaviours.bob_action_critical)
         bob_initial = Piece("bob_initial", lambda c: c.bob == "c", Behaviours.bob_action_initial)
         pieces = [alice_critical, alice_initial, bob_critical, bob_initial]
         super().__init__(programConfigAB1(), pieces)

@@ -10,9 +10,9 @@ from Graph.Soupe import SoupSemantics
 
 if __name__ == '__main__':
 
-    v = 1  # ou 2 -> Permet de choisir si on veut tester la version 1 de alice et bob (sans flag), ou la version 2
+    v = 2  # ou 2 -> Permet de choisir si on veut tester la version 1 de alice et bob (sans flag), ou la version 2
 
-    if v == 2:
+    if v == 1:
         AliceBob = AliceBob1
         Soup = SoupAB1
     else:
@@ -41,11 +41,12 @@ if __name__ == '__main__':
 
         print("Tentative de trouver un dead lock en cours ....")
 
-        final_node = predicate_finder(graph, has_deadlock(AliceBob1()))
+        final_node = predicate_finder(graph, has_deadlock(AliceBob()))
 
-        if final_node[0] is None:
+        if not final_node[0][0]:
             print("Pas de dead lock trouvé, gg")
         else:
             print("Dead lock en vu !")
+            print(graph.trace(final_node[0][2]))
 
         print("___________________________________________________________")

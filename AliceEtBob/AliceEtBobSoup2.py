@@ -16,6 +16,9 @@ class programConfigAB2(programConfigAB1):
     def __eq__(self, other):
         return (self.alice, self.bob) == (other.alice, other.bob)
 
+    def __repr__(self):
+        return f"AliceBobConfig({self.alice}, {self.bob}, {self.flag_alice}, {self.flag_bob})"
+
 
 class SoupAB2(Soup):
     def __init__(self):

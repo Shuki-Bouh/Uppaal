@@ -36,13 +36,13 @@ class AliceBob1(RootedRelation):
         possible_actions = []
 
         # Alice peut changer son état
-        if node.alice == "i":
+        if node.alice == "i" and node.bob == "i":
             possible_actions.append(("alice", "c"))
         elif node.alice == "c":
             possible_actions.append(("alice", "i"))
 
         # Bob peut changer son état
-        if node.bob == "i":
+        if node.bob == "i" and node.alice == "i":
             possible_actions.append(("bob", "c"))
         elif node.bob == "c":
             possible_actions.append(("bob", "i"))
