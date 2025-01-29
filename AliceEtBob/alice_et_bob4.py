@@ -1,23 +1,8 @@
 from Graph.rootedRelation import RootedRelation
+from AliceEtBob.alice_et_bob2 import AliceBobNode2
 
 
-class AliceBobNode2:
-    def __init__(self, alice: str, bob: str, flag_alice: bool, flag_bob: bool):
-        self.alice = alice
-        self.bob = bob
-        self.flag_alice = flag_alice
-        self.flag_bob = flag_bob
-
-    def __eq__(self, other) -> bool:
-        return self.alice == other.alice and self.bob == other.bob and self.flag_alice == other.flag_alice and self.flag_bob == other.flag_bob
-
-    def __hash__(self):
-        return hash((self.alice, self.bob, self.flag_alice, self.flag_bob))
-
-    def __repr__(self):
-        return f"AliceBobNode({self.alice}, {self.bob}, {self.flag_alice}, {self.flag_bob})"
-
-class AliceBob2(RootedRelation):
+class AliceBob4(RootedRelation):
     def __init__(self):
         super().__init__()
         self.__root = [AliceBobNode2(alice="i", bob="i", flag_alice=False, flag_bob=False),]
@@ -45,9 +30,12 @@ class AliceBob2(RootedRelation):
             possible_actions.append(("bob", "w", True))
         elif node.bob == "w" and not node.flag_alice:
             possible_actions.append(("bob", "c", True))
+        elif node.bob == "w" and node.flag_alice:
+            possible_actions.append(("bob", "r", False))
+        elif node.bob == "r" and not node.flag_alice:
+            possible_actions.append(("bob", "c", True))
         elif node.bob == "c":
             possible_actions.append(("bob", "i", False))
-
         return possible_actions
 
     def execute(self, action, node: AliceBobNode2):
@@ -56,4 +44,5 @@ class AliceBob2(RootedRelation):
             return [AliceBobNode2(alice=new_state, bob=node.bob, flag_alice=new_flag, flag_bob=node.flag_bob)]
         elif actor == "bob":
             return [AliceBobNode2(alice=node.alice, bob=new_state, flag_alice=node.flag_alice, flag_bob=new_flag)]
+
 

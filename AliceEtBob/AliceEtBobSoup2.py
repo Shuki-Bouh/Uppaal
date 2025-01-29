@@ -1,4 +1,5 @@
-from AliceEtBob.AliceEtBobSoup1 import *
+from AliceEtBob.AliceEtBobSoup1 import Behaviours, programConfigAB1
+from Graph.Soupe import Soup, Piece
 
 
 class programConfigAB2(programConfigAB1):

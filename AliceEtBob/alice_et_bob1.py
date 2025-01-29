@@ -58,9 +58,3 @@ class AliceBob1(RootedRelation):
             return [AliceBobNode1(alice=new_state, bob=node.bob)]
         elif actor == "bob":
             return [AliceBobNode1(alice=node.alice, bob=new_state)]
-
-    def is_deadlock(self, node: AliceBobNode1):
-        """
-        Vérifie si l'état actuel est un état de blocage.
-        """
-        return len(self.actions(node)) == 0

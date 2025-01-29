@@ -30,13 +30,6 @@ class Behaviours:
         config.PC += 1
 
     @staticmethod
-    def alice_action_warning(config: programConfig):
-        """Uniquement pour la v2"""
-        config.alice = "w"
-        config.flag_alice = True
-        config.PC += 1
-
-    @staticmethod
     def alice_action_critical(config: programConfig):
         config.alice = "c"
         config.PC += 1
@@ -47,6 +40,19 @@ class Behaviours:
         config.PC += 1
 
     @staticmethod
+    def bob_action_critical(config: programConfig):
+        config.bob = "c"
+        config.flag_bob = True  # Sert pour la v4
+        config.PC += 1
+
+    @staticmethod
+    def alice_action_warning(config: programConfig):
+        """Uniquement pour la v2"""
+        config.alice = "w"
+        config.flag_alice = True
+        config.PC += 1
+
+    @staticmethod
     def bob_action_warning(config: programConfig):
         """Uniquement pour la v2"""
         config.bob = "w"
@@ -54,8 +60,10 @@ class Behaviours:
         config.PC += 1
 
     @staticmethod
-    def bob_action_critical(config: programConfig):
-        config.bob = "c"
+    def bob_action_r(config: programConfig):
+        """Uniquement pour la v4"""
+        config.bob = "r"
+        config.flag_bob = False
         config.PC += 1
 
 

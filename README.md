@@ -1,5 +1,7 @@
 # Validation
 
+Pour composer buchi avec un automate, on place buchi se trouve à droite et l'automate à gauche.
+
 ## Utilisation
 
 Pour utiliser le code, des fichiers mains se trouvent dans la racine du projet.

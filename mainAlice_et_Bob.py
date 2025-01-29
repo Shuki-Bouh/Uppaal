@@ -1,23 +1,36 @@
+from AliceEtBob.AliceEtBobSoup4 import SoupAB4
+from AliceEtBob.alice_et_bob4 import AliceBob4
 from Graph.decorateur import ParentTracer
 from Graph.RR2RG import RR2RG
 from Graph.Graph_traversal import predicate_finder, has_deadlock
 from AliceEtBob.alice_et_bob2 import AliceBob2
 from AliceEtBob.alice_et_bob1 import AliceBob1
+from AliceEtBob.alice_et_bob3 import AliceBob3
 from AliceEtBob.predicate_alice_et_bob import predicate_alicebob
 from AliceEtBob.AliceEtBobSoup1 import SoupAB1
 from AliceEtBob.AliceEtBobSoup2 import SoupAB2
+from AliceEtBob.AliceEtBobSoup3 import SoupAB3
 from Graph.Soupe import SoupSemantics
 
 if __name__ == '__main__':
 
-    v = 2  # ou 2 -> Permet de choisir si on veut tester la version 1 de alice et bob (sans flag), ou la version 2
+    v = 4  # ou 2 -> Permet de choisir si on veut tester la version 1 de alice et bob (sans flag), ou la version 2
+
 
     if v == 1:
         AliceBob = AliceBob1
         Soup = SoupAB1
-    else:
+    elif v == 2:
         AliceBob = AliceBob2
         Soup = SoupAB2
+    elif v == 3:
+        AliceBob = AliceBob3
+        Soup = SoupAB3
+    elif v == 4:
+        AliceBob = AliceBob4
+        Soup = SoupAB4
+    else:
+        raise Exception('Invalid value')
 
     configs = [[RR2RG(AliceBob()), "\tFonctionnement en Rootedrelation\n"],
                [RR2RG(SoupSemantics(Soup())), "\tFonctionnement en Soupsemantics\n"]] # Cela permet de tester le rootedgraph puis le soupsemantics
