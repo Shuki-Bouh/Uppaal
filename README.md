@@ -1,5 +1,8 @@
 # Validation
 
+![ascii-art.png](Pictures/ascii-art.png)
+
+
 Pour composer buchi avec un automate, on place buchi se trouve à droite et l'automate à gauche.
 
 ## Utilisation
@@ -13,6 +16,7 @@ Pour utiliser le code, des fichiers mains se trouvent dans la racine du projet.
 tout. En effet, elles s'exécutent pour le __RootedRelation__ et pour le __SoupSemantics__.
 Pour choisir la version qu'on souhaite exécuter, il suffit de modifier la variable *v* : 1 pour la version 1, n'importe
 quoi d'autre pour la version 2.
+![v-iG48RT.jpeg](Pictures/v-iG48RT.jpeg)
 
 Que se passe-t-il lors de l'exécution de Alice et Bob : 
 * On cherche à voir si Alice et Bob se retrouvent dans la section critique en même temps
