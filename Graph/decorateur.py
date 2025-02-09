@@ -1,5 +1,5 @@
 from Graph.Graph_traversal import RootedGraph
-
+from Graph.Profileur import profileur
 
 class ParentTracer(RootedGraph):
     def __init__(self, operand):
@@ -8,12 +8,14 @@ class ParentTracer(RootedGraph):
         self.operand = operand
 
     @property
+    @profileur.profileur
     def roots(self):
         rs = self.operand.roots
         for r in rs:
             self.parents[r] = []
         return rs
 
+    @profileur.profileur
     def neighbours(self, node):
         rs = self.operand.neighbours(node)
         for n in rs:
@@ -23,6 +25,7 @@ class ParentTracer(RootedGraph):
                 self.parents[n] = [node]
         return rs
 
+    @profileur.profileur
     def trace(self, final_node):
         """Cette fonction, une fois tout le graph parcouru, va à partir du nœud final (connaissant la root), réécrir
         le chemin de la root vers le nœud final."""
@@ -36,3 +39,5 @@ class ParentTracer(RootedGraph):
         for n in range(len(trace_node)-2, -1, -1):
             out = out + " -> " + str(trace_node[n])
         return out
+
+

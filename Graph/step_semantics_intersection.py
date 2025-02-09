@@ -4,6 +4,7 @@ from Graph.Soupe import SoupSemantics, Soup, programConfig
 from Graph.decorateur import ParentTracer
 from Graph.Soupe import Piece
 from RDR import SoupDependantSemantics
+from Graph.Profileur import profileur
 
 
 class Stutter:
@@ -15,6 +16,7 @@ class StepSemanticsIntersection:
         self.lhs = lhs
         self.rhs = rhs
 
+    @profileur.profileur
     def initial(self):
         configs = []
         for lc in self.lhs.initial():
@@ -22,6 +24,7 @@ class StepSemanticsIntersection:
                 configs.append((lc, rc))
         return configs
 
+    @profileur.profileur
     def actions(self, config):
         sync_actions = []
         left_config, right_config = config
@@ -47,6 +50,7 @@ class StepSemanticsIntersection:
 
         return sync_actions
 
+    @profileur.profileur
     def execute(self, action, config):
         left_step, right_action = action
         left_configuration, right_configuration = config

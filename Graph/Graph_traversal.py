@@ -1,5 +1,6 @@
 from abc import abstractmethod, ABC
 from collections import deque
+from Graph.Profileur import profileur
 
 
 class RootedGraph(ABC):
@@ -24,7 +25,7 @@ class RootedGraph(ABC):
     def __hash__(self):
         return 1
 
-
+@profileur.profileur
 def bfs_trans(graph, pred, opaque):
     I = True
     k = set()
@@ -42,7 +43,7 @@ def bfs_trans(graph, pred, opaque):
                     return opaque, k
     return opaque, k
 
-
+@profileur.profileur
 def predicate_finder(graph, predicate):
     def check_pred(n, a):
         a[1] += 1
@@ -52,7 +53,7 @@ def predicate_finder(graph, predicate):
         return a[0]
     return bfs_trans(graph, check_pred, [False, 0, None])
 
-
+@profileur.profileur
 def has_deadlock(sem):
     def pred(c):
         actions = sem.actions(c)

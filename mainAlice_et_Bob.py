@@ -11,10 +11,11 @@ from AliceEtBob.AliceEtBobSoup1 import SoupAB1
 from AliceEtBob.AliceEtBobSoup2 import SoupAB2
 from AliceEtBob.AliceEtBobSoup3 import SoupAB3
 from Graph.Soupe import SoupSemantics
+from Graph.Profileur import profileur
 
 if __name__ == '__main__':
 
-    v = 4  # ou 2 -> Permet de choisir si on veut tester la version 1 de alice et bob (sans flag), ou la version 2
+    v = 2  # ou 2 -> Permet de choisir si on veut tester la version 1 de alice et bob (sans flag), ou la version 2
 
 
     if v == 1:
@@ -38,7 +39,7 @@ if __name__ == '__main__':
     for config in configs:
         operand = config[0]
         msg = config[1]
-
+        profileur.reset()
         graph = ParentTracer(operand)
         final_node = predicate_finder(graph, predicate_alicebob)
         print("___________________________________________________________")
@@ -63,3 +64,5 @@ if __name__ == '__main__':
             print(graph.trace(final_node[0][2]))
 
         print("___________________________________________________________")
+
+        profileur.afficher_statistiques()
