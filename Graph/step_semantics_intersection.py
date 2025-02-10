@@ -3,7 +3,7 @@ from Graph.RR2RG import RR2RG
 from Graph.Soupe import SoupSemantics, Soup, programConfig
 from Graph.decorateur import ParentTracer
 from Graph.Soupe import Piece
-from RDR import SoupDependantSemantics
+from Graph.RDR import SoupDependantSemantics
 from Graph.Profileur import profileur
 
 
