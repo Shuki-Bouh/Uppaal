@@ -6,12 +6,16 @@ class HanoiNode:
         - La position de chaque disque
         - Pour chaque pilier, le disque le plus haut présent sur ce pilier (None si le pilier est vide)"""
 
-    def __init__(self, state_disks: list, state_piliers: dict):
+    def __init__(self, state_disks: list, state_piliers: dict, PC=0):
         """Je veux accéder au disque 2 : state_disks[2] = pilier_sur_lequel_il_se_trouve
         Je veux voir si le pilier 4 est utilisé : state_pilier[4] = disque_le_plus_haut"""
         self.state_disks = state_disks
         self.state_piliers = state_piliers
+        self.PC = PC
         return
+
+    def copy(self):
+        return HanoiNode(self.state_disks, self.state_piliers, self.PC)
 
     def __eq__(self, other):
         """Égalité si tous les disques sont sur les mêmes piliers ..."""
@@ -24,7 +28,7 @@ class HanoiNode:
                     return False
             except KeyError:
                 return False
-        return True
+        return True and self.PC == other.PC
 
     def __hash__(self):
         return hash(tuple(self.state_disks))
